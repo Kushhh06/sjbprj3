@@ -1,35 +1,36 @@
+
 package sjb.mca.tree;
 
-public class BST {
+public class BST 
+{
 	TreeNode root;
-	void insert(int value) 
+	void insert(int value)
 	{
 		root=insertNode(root,value);
 	}
-	
-	TreeNode insertNode(TreeNode node,int value) 
+	TreeNode insertNode(TreeNode node,int value)
 	{
-		if(node==null) 
+		if(node==null)
 		{
 			node=new TreeNode(value);
 			return node;
 		}
-		if(value<node.data) 
+		if(value<node.data)
 		{
 			node.left=insertNode(node.left,value);
-			
 		}
-		else if(value>node.data) 
+		else if(value>node.data)
 		{
 			node.right=insertNode(node.right,value);
-			
 		}
 		return node;
 	}
-	void inorder() {
+	void inorder()
+	{
+		System.out.println("inorder");
 		inorderNode(root);
 	}
-	void inorderNode(TreeNode node) 
+	void inorderNode(TreeNode node)
 	{
 		if(node!=null)
 		{
@@ -38,46 +39,48 @@ public class BST {
 			inorderNode(node.right);
 		}
 	}
-	
-	void preorder() {
-		preorderNode(root);
+	void preorder()
+	{
+		System.out.println("preorder");
+		inpreorderNode(root);
 	}
-	 void preorderNode(TreeNode node)
-	    {
-	        if (node != null)
-	        {
-	            System.out.println(node.data);    
-	            preorderNode(node.left);         
-	            preorderNode(node.right);       
-	        }
-	    }
-	 void postorder() {
-			postorderNode(root);
+	void inpreorderNode(TreeNode node)
+	{
+		if(node!=null)
+		{
+			System.out.println(node.data);
+			inpreorderNode(node.left);
+			inpreorderNode(node.right);
 		}
-	 void postorderNode(TreeNode node)
-	    {
-	        if (node != null)
-	        {
-	            preorderNode(node.left);         
-	            preorderNode(node.right);
-	            System.out.println(node.data);    
-
-	        }
-	    }
-
-
-
+	}
+	void postorder()
+	{
+		System.out.println("postorder");
+		inpostorderNode(root);
+	}
+	void inpostorderNode(TreeNode node)
+	{
+		if(node!=null)
+		{
+			inpostorderNode(node.left);
+			inpostorderNode(node.right);
+			System.out.println(node.data);
+		}
+	}
 	
-
-	public static void main(String[] args) {
-     BST b=new BST();
-     b.insert(10);
-     b.insert(45);
-     b.insert(5);
-     b.inorder();
-     b.preorder();
-     b.postorder();
-
+	public static void main(String[] args)
+	{
+		BST bst=new BST();
+		bst.insert(10);
+		bst.insert(13);
+		bst.insert(45);
+		bst.insert(5);
+		bst.insert(7);
+		bst.insert(4);
+		bst.insert(12);
+		bst.inorder();
+		bst.preorder();
+		bst.postorder();
 	}
 
 }
